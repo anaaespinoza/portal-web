@@ -4,6 +4,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroVideo from "../components/landing/HeroVideo.astro";
 import LogoMarquee from "../components/landing/LogoMarquee.astro";
 import CategoriasSection from "../components/landing/CategoriasSection.astro";
+import InfoBlock from "../components/landing/InfoBlock.astro";
+import SectionContainer from "../components/landing/SectionContainer.astro";
+import { infoInscripciones, infoInvestigacion, infoTSJEnLinea } from "../lib/infoData";
 ---
 <BaseLayout
   title="Tecnológico Superior de Jalisco"
@@ -14,13 +17,62 @@ import CategoriasSection from "../components/landing/CategoriasSection.astro";
     <LogoMarquee />
   </div>
   <CategoriasSection />
-  <!-- Resto de secciones del landing → FASE 1 tarea 2 -->
+
+  <section id="inscripciones" class="info-section">
+    <SectionContainer>
+      <InfoBlock
+        titulo={infoInscripciones.titulo}
+        descripcion={infoInscripciones.descripcion}
+        imagen={infoInscripciones.imagen}
+        reverse={infoInscripciones.reverse}
+        link={infoInscripciones.link}
+      />
+    </SectionContainer>
+  </section>
+
+  <section id="en-linea" class="info-section info-section--tight">
+    <SectionContainer>
+      <InfoBlock
+        titulo={infoTSJEnLinea.titulo}
+        descripcion={infoTSJEnLinea.descripcion}
+        imagen={infoTSJEnLinea.imagen}
+        reverse={infoTSJEnLinea.reverse}
+        link={infoTSJEnLinea.link}
+      />
+    </SectionContainer>
+  </section>
+
+  <section id="investigacion" class="info-section info-section--none">
+    <SectionContainer>
+      <InfoBlock
+        titulo={infoInvestigacion.titulo}
+        descripcion={infoInvestigacion.descripcion}
+        imagen={infoInvestigacion.imagen}
+        reverse={infoInvestigacion.reverse}
+        link={infoInvestigacion.link}
+      />
+    </SectionContainer>
+  </section>
+  <!-- Resto de secciones del landing → FASE 1 tarea 3: noticias, cursos y talleres, enlaces, contacto -->
 </BaseLayout>
 
 <style>
   .landing-hero {
     display: flex;
     flex-direction: column;
+  }
+
+  .info-section {
+    background-color: #ffffff;
+    padding: 3rem 0; /* py: 6 */
+  }
+
+  .info-section--tight {
+    padding: 2rem 0; /* py: 4 */
+  }
+
+  .info-section--none {
+    padding: 0; /* py: 0 */
   }
 
   @media (min-width: 900px) {

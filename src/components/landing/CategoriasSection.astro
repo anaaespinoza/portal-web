@@ -1,6 +1,7 @@
 ---
 // Sección Categorías/Oferta — origen: <CategoriasSection /> + <EstadisticasBanner />
 import StatsBanner from "./StatsBanner.astro";
+import SectionContainer from "./SectionContainer.astro";
 
 const categorias = [
   {
@@ -25,59 +26,97 @@ const categorias = [
 ---
 
 <section class="categorias" id="categorias">
-  <h2 class="categorias-titulo">
-    Descubre tu camino <span class="categorias-accent">hacia el futuro</span>
-  </h2>
+  <SectionContainer>
+    <h2 class="categorias-titulo">
+      Descubre tu camino <span class="categorias-accent">hacia el futuro</span>
+    </h2>
+  </SectionContainer>
 
-  <div class="carrusel">
-    <button class="carrusel-arrow carrusel-arrow--left" type="button" aria-label="Categoría anterior">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+  <SectionContainer>
+    <div class="carrusel">
+    <button
+      class="carrusel-arrow carrusel-arrow--left"
+      type="button"
+      aria-label="Categoría anterior"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true"
+        ><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg
+      >
     </button>
 
     <ul class="carrusel-stage">
-      {categorias.map((c) => (
-        <li class="carrusel-item" data-pos="0">
-          <a href={c.to}>
-            <img src={c.imagen} alt={c.titulo} loading="lazy" />
-            <span class="carrusel-gradiente" aria-hidden="true"></span>
-            <h3 class="carrusel-tit"><span>{c.titulo}</span></h3>
-          </a>
-        </li>
-      ))}
+      {
+        categorias.map((c) => (
+          <li class="carrusel-item" data-pos="0">
+            <a href={c.to}>
+              <img src={c.imagen} alt={c.titulo} loading="lazy" />
+              <span class="carrusel-gradiente" aria-hidden="true" />
+              <h3 class="carrusel-tit">
+                <span>{c.titulo}</span>
+              </h3>
+            </a>
+          </li>
+        ))
+      }
     </ul>
 
-    <button class="carrusel-arrow carrusel-arrow--right" type="button" aria-label="Categoría siguiente">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    <button
+      class="carrusel-arrow carrusel-arrow--right"
+      type="button"
+      aria-label="Categoría siguiente"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true"
+        ><path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg
+      >
     </button>
 
-    <div class="carrusel-mobile" role="group" aria-label="Controles del carrusel">
-      <button class="carrusel-btn-mobile" type="button" aria-label="Categoría anterior">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    <div
+      class="carrusel-mobile"
+      role="group"
+      aria-label="Controles del carrusel"
+    >
+      <button
+        class="carrusel-btn-mobile"
+        type="button"
+        aria-label="Categoría anterior"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true"
+          ><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg
+        >
       </button>
-      <button class="carrusel-btn-mobile" type="button" aria-label="Categoría siguiente">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      <button
+        class="carrusel-btn-mobile"
+        type="button"
+        aria-label="Categoría siguiente"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true"
+          ><path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg
+        >
       </button>
     </div>
-  </div>
+    </div>
+  </SectionContainer>
 
-  <StatsBanner />
+  <SectionContainer>
+    <StatsBanner />
+  </SectionContainer>
 </section>
 
 <style>
   .categorias {
     position: relative;
     overflow: hidden;
-    padding-top: 5rem;
-    padding-bottom: 6rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   .categorias-titulo {
     text-align: center;
-    margin: 0 0 6rem;
+    margin: 0 0 3rem;
     color: var(--navy-blue-dark);
     font-family: "madaniArabicBold", sans-serif;
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: 500;
     padding-inline: 1rem;
   }
 
@@ -89,8 +128,6 @@ const categorias = [
   .carrusel {
     position: relative;
     width: 100%;
-    max-width: 1400px;
-    margin-inline: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -193,14 +230,16 @@ const categorias = [
   }
 
   .carrusel-item[data-pos="-1"] {
-    transform: translate(-50%, -50%) translateX(calc(-1 * var(--side-x))) scale(var(--side-scale));
+    transform: translate(-50%, -50%) translateX(calc(-1 * var(--side-x)))
+      scale(var(--side-scale));
     z-index: 1;
     opacity: 0.6;
     filter: brightness(0.75);
   }
 
   .carrusel-item[data-pos="1"] {
-    transform: translate(-50%, -50%) translateX(var(--side-x)) scale(var(--side-scale));
+    transform: translate(-50%, -50%) translateX(var(--side-x))
+      scale(var(--side-scale));
     z-index: 2;
     opacity: 0.6;
     filter: brightness(0.75);
@@ -215,7 +254,6 @@ const categorias = [
     height: 50px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.9);
-    border: 2px solid var(--navyBlue);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     align-items: center;
     justify-content: center;
@@ -278,7 +316,7 @@ const categorias = [
 
   @media (min-width: 600px) {
     .categorias {
-      padding-top: 10rem;
+      padding-top: 4rem;
     }
     .categorias-titulo {
       font-size: 2.5rem;
@@ -352,10 +390,18 @@ const categorias = [
   stage?.addEventListener("focusin", stop);
   stage?.addEventListener("focusout", start);
 
-  document.querySelector(".carrusel-arrow--left")?.addEventListener("click", prev);
-  document.querySelector(".carrusel-arrow--right")?.addEventListener("click", next);
-  document.querySelector(".carrusel-btn-mobile")?.addEventListener("click", prev);
-  document.querySelectorAll(".carrusel-btn-mobile")[1]?.addEventListener("click", next);
+  document
+    .querySelector(".carrusel-arrow--left")
+    ?.addEventListener("click", prev);
+  document
+    .querySelector(".carrusel-arrow--right")
+    ?.addEventListener("click", next);
+  document
+    .querySelector(".carrusel-btn-mobile")
+    ?.addEventListener("click", prev);
+  document
+    .querySelectorAll(".carrusel-btn-mobile")[1]
+    ?.addEventListener("click", next);
 
   render();
   start();
