@@ -1,1 +1,2 @@
 2026-09-18 | 0.0.1 | - | Release inicial | -
+2026-09-18 | 0.0.2 | Cambios frontend | - | -
