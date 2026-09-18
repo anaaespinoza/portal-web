@@ -1,0 +1,92 @@
+---
+// Drawer móvil (port de mobiledrawer.tsx del SPA)
+import type { NavItem } from "./navitems";
+
+interface Props {
+  items: NavItem[];
+}
+
+const { items } = Astro.props;
+const pathname = Astro.url.pathname;
+const isExternal = (href: string) => href.startsWith("http");
+---
+
+<nav class="tl-mobile-drawer" aria-label="Menú móvil">
+  <label class="tl-drawer-close" for="tl-drawer-toggle" aria-label="Cerrar menú">
+    <svg viewBox="0 0 24 24"><path d="M18.3 5.7 12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3 10.6 10.6 16.9 4.3z"/></svg>
+  </label>
+  <div style="clear:both"></div>
+  {items.map((item) => (
+    <div>
+      <div class="tl-mobile-title">{item.title}</div>
+      {item.options.length > 0 ? (
+        item.options.map((option) => (
+          <a
+            class="tl-mobile-option"
+            href={option.path}
+            {isExternal(option.path) && "target=_blank"}
+            {isExternal(option.path) && "rel=noopener noreferrer"}
+          >
+            {option.label}
+          </a>
+        ))
+      ) : (
+        <a
+          class="tl-mobile-option"
+          href={item.isExternal ? item.path : (item.path || ("/" + pathname + "#" + item.anchor))}
+          {item.isExternal && "target=_blank"}
+          {item.isExternal && "rel=noopener noreferrer"}
+        >
+          {item.title}
+        </a>
+      )}
+    </div>
+  ))}
+  <a class="tl-mobile-option" href="/admisiones">Admisión</a>
+  <a class="tl-mobile-option" href="/centro-de-ayuda">Ayuda</a>
+</nav>
+
+<style is:global>
+  .tl-mobile-drawer {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background-color: var(--greydark);
+    z-index: 1200;
+    overflow-y: auto;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s;
+    color: #fff;
+  }
+  .tl-mobile-drawer a {
+    color: #fff;
+    text-decoration: none;
+    font-family: "madaniArabicLight", sans-serif;
+    font-size: 1rem;
+    display: block;
+    padding: 10px 4px;
+  }
+  .tl-mobile-drawer .tl-mobile-title {
+    font-family: "madaniArabicMedium", sans-serif;
+    font-size: 1.05rem;
+    margin: 12px 0 2px;
+    padding: 8px 4px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .tl-mobile-drawer .tl-mobile-option {
+    padding-left: 18px;
+    opacity: 0.92;
+    font-size: 0.95rem;
+  }
+  .tl-drawer-close {
+    float: right;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+  }
+  .tl-drawer-close svg {
+    fill: #fff;
+  }
+</style>

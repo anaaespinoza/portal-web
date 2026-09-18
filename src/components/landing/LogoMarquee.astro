@@ -1,0 +1,219 @@
+---
+// LogoMarquee — cinta de Unidades Académicas debajo del hero
+// Origen: <LogoMarquee /> (src/components/LogoMarquee/LogoMarquee.tsx)
+import arandas from "../../assets/unidades/Arandas.png";
+import zapopan from "../../assets/unidades/Zapopan.png";
+import tequila from "../../assets/unidades/Tequila.png";
+import chapala from "../../assets/unidades/Chapala.png";
+import cocula from "../../assets/unidades/Cocula.png";
+import elGrullo from "../../assets/unidades/EL-GRULLO.png";
+import laHuerta from "../../assets/unidades/LA-HUERTA.png";
+import lagosDeMoreno from "../../assets/unidades/LAGOS-MORENO.png";
+import mascota from "../../assets/unidades/Mascota.png";
+import puertoVallarta from "../../assets/unidades/PUERTO-VALLARTA.png";
+import sanJuan from "../../assets/unidades/SAN-JUAN.png";
+import tala from "../../assets/unidades/Tala.png";
+import tamazula from "../../assets/unidades/TAMAZULA.png";
+import tepatitlan from "../../assets/unidades/TEPATITLAN.png";
+import tomatlan from "../../assets/unidades/Tomatlan.png";
+import zapotlanejo from "../../assets/unidades/Zapotlanejo.png";
+import linea from "../../assets/unidades/EN-LINEA.png";
+
+interface Logo {
+  src: ImageMetadata;
+  alt: string;
+  path?: string;
+}
+
+const logos: Logo[] = [
+  { src: arandas, alt: "UA. Arandas" },
+  { src: zapopan, alt: "UA. Zapopan" },
+  { src: tequila, alt: "UA. Tequila" },
+  { src: chapala, alt: "UA. Chapala" },
+  { src: cocula, alt: "UA. Cocula" },
+  { src: elGrullo, alt: "UA. El Grullo" },
+  { src: laHuerta, alt: "UA. La Huerta" },
+  { src: lagosDeMoreno, alt: "UA. Lagos de Moreno" },
+  { src: mascota, alt: "UA. Mascota" },
+  { src: puertoVallarta, alt: "UA. Puerto Vallarta" },
+  { src: sanJuan, alt: "UA. San Juan de los Lagos" },
+  { src: tala, alt: "UA. Tala" },
+  { src: tamazula, alt: "UA. Tamazula de Gordiano" },
+  { src: tepatitlan, alt: "UA. Tepatitlán de Morelos" },
+  { src: tomatlan, alt: "UA. Tomatlán" },
+  { src: zapotlanejo, alt: "UA. Zapotlanejo" },
+  { src: linea, alt: "UA. TSJ En Línea", path: "/en-linea" },
+];
+---
+
+<section
+  class="marquee"
+  aria-label="Unidades académicas del Tecnológico Superior de Jalisco"
+>
+  <ul class="marquee-track">
+    {
+      logos.map((logo) => (
+        <li class="marquee-item">
+          {logo.path ? (
+            <a href={logo.path}>
+              <img src={logo.src.src} alt={logo.alt} />
+              <span>{logo.alt}</span>
+            </a>
+          ) : (
+            <>
+              <img src={logo.src.src} alt={logo.alt} />
+              <span>{logo.alt}</span>
+            </>
+          )}
+        </li>
+      ))
+    }
+    {
+      logos.map((logo) => (
+        <li class="marquee-item" aria-hidden="true">
+          {logo.path ? (
+            <a href={logo.path} tabindex="-1">
+              <img src={logo.src.src} alt="" />
+              <span>{logo.alt}</span>
+            </a>
+          ) : (
+            <>
+              <img src={logo.src.src} alt="" />
+              <span>{logo.alt}</span>
+            </>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .marquee {
+    width: 100%;
+    overflow: hidden;
+    background-color: #373a3a;
+    padding: 0.75rem 0; /* Igual a py: { xs: 1.5 } -> 12px */
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .marquee::before,
+  .marquee::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .marquee::before {
+    left: 0;
+    background: linear-gradient(to right, #373a3a, transparent);
+  }
+
+  .marquee::after {
+    right: 0;
+    background: linear-gradient(to left, #373a3a, transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    flex-wrap: nowrap;
+    gap: 2rem; /* Igual a gap: { xs: 4 } -> 32px */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    animation: marqueeLoop 130s linear infinite;
+  }
+
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes marqueeLoop {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 6.4px; /* Igual a gap: 0.8 en MUI -> 6.4px */
+    opacity: 0.8;
+    cursor: default;
+    transition:
+      opacity 0.2s,
+      transform 0.2s;
+  }
+
+  .marquee-item a {
+    display: flex;
+    align-items: center;
+    gap: 6.4px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .marquee-item:hover {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  /* --- MÓVIL (xs: < 600px) --- */
+  .marquee-item img {
+    height: 35px; /* xs: "35px" */
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .marquee-item span {
+    color: #fff;
+    white-space: nowrap;
+    font-family: "madaniArabicLight", sans-serif;
+    font-size: 0.9rem; /* xs: "0.9rem" */
+    line-height: 1;
+    margin: 0;
+  }
+
+  /* --- TABLET (sm: min-width 600px) --- */
+  @media (min-width: 600px) {
+    .marquee {
+      padding: 1rem 0; /* py: { sm: 2 } -> 16px */
+    }
+    .marquee-track {
+      gap: 3rem; /* gap: { sm: 6 } -> 48px */
+    }
+    .marquee-item img {
+      height: 48px; /* sm: "48px" */
+    }
+    .marquee-item span {
+      font-size: 1.1rem; /* sm: "1.1rem" */
+    }
+  }
+
+  /* --- DESKTOP (md: min-width 900px) --- */
+  @media (min-width: 900px) {
+    .marquee {
+      padding: 1rem 0; /* py: { md: 2 } -> 16px */
+    }
+    .marquee-track {
+      gap: 8rem; /* gap: { md: 10 } -> 80px */
+    }
+    .marquee-item img {
+      height: 60px; /* md: "60px" */
+    }
+    .marquee-item span {
+      font-size: 1.2rem; /* md: "1.2rem" */
+    }
+  }
+</style>

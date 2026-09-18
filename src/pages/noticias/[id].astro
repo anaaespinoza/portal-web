@@ -1,0 +1,13 @@
+---
+// Ruta "/noticias/:id" — origen: <Noticia /> (dinámica)
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  return []; // TODO: poblar con noticias cuando el contenido esté portado
+}
+---
+<BaseLayout>
+  <p style="font-family:'madaniArabicLight',sans-serif;color:var(--textdark);padding:2rem">
+    Noticia — contenido pendiente de portar (ruta dinámica).
+  </p>
+</BaseLayout>

@@ -1,0 +1,266 @@
+:root {
+  --color-vigente: #54c98f;
+  --color-titulado: #308fff;
+  --color-egresado: #1e0184;
+  --color-cursos: #26a69a;
+  --color-baja-temporal: #ffae31;
+  --color-baja-definitiva: #e53935;
+  --color-baja-especial: #ff4d63;
+  --color-personal: #33179c;
+  --color-default: #9e9e9e;
+  --text: #857f8a;
+  --bg-gradient-from: #0a1628;
+  --bg-gradient-to: #1a2744;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    var(--bg-gradient-from) 0%,
+    var(--bg-gradient-to) 100%
+  );
+  padding: 1rem;
+}
+
+.card {
+  max-width: 380px;
+  width: 100%;
+  background: white;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 0.5s ease-out;
+  position: relative;
+}
+
+.card.accent-vigente::before {
+  background: var(--color-vigente);
+}
+.card.accent-titulado::before {
+  background: var(--color-titulado);
+}
+.card.accent-egresado::before {
+  background: var(--color-egresado);
+}
+.card.accent-cursos::before {
+  background: var(--color-cursos);
+}
+.card.accent-baja-temporal::before {
+  background: var(--color-baja-temporal);
+}
+.card.accent-baja-definitiva::before {
+  background: var(--color-baja-definitiva);
+}
+.card.accent-baja-especial::before {
+  background: var(--color-baja-especial);
+}
+.card.accent-personal::before {
+  background: var(--color-personal);
+}
+.card.accent-default::before {
+  background: var(--color-default);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header {
+  background: linear-gradient(
+    135deg,
+    var(--bg-gradient-from),
+    var(--bg-gradient-to)
+  );
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.header {
+  background: #9e9e9e;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.header img {
+  width: 80px;
+  margin-bottom: 0.5rem;
+}
+
+.header h1 {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.body {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: black;
+  margin-bottom: 0.5rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.3rem 1.2rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: var(--color-egresado);
+  color: white;
+  margin: 0.25rem 0 0.75rem 0;
+}
+
+.badge-inline {
+  display: inline-block;
+  margin: 0.25rem 0 1rem 0;
+}
+
+.role {
+  font-size: 0.95rem;
+  color: var(--text);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.foto-container {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.foto-container img {
+  width: 130px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
+  margin: 1rem 0;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-size: 0.8rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 1rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--color-default);
+  color: white;
+}
+
+.status-badge.status-vigente {
+  background: var(--color-vigente);
+}
+
+.status-badge.status-titulado {
+  background: var(--color-titulado);
+}
+
+.status-badge.status-egresado {
+  background: var(--color-egresado);
+}
+
+.status-badge.status-cursos {
+  background: var(--color-cursos);
+}
+
+.status-badge.status-baja-temporal {
+  background: var(--color-baja-temporal);
+}
+
+.status-badge.status-baja-definitiva {
+  background: var(--color-baja-definitiva);
+}
+
+.status-badge.status-baja-especial {
+  background: var(--color-baja-especial);
+}
+
+.type-badge {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background: #f5f7ff;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: var(--color-egresado);
+}
+
+.not-found {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: white;
+}
+
+.not-found .icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+
+.not-found h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.not-found p {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}

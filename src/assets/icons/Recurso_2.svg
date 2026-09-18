@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.34 78.34">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #32169b;
+      }
+
+      .cls-2 {
+        fill: #cb4e68;
+      }
+    </style>
+  </defs>
+  <g id="Capa_1-2" data-name="Capa 1">
+    <g>
+      <rect class="cls-1" width="78.34" height="78.34"/>
+      <g>
+        <g>
+          <rect class="cls-2" x="12.13" y="10.12" width="7.06" height="9.4"/>
+          <path class="cls-2" d="M55.57,19.52h-1.54v-9.4h1.54v9.4ZM51.98,19.52h-2.05v-9.4h2.05v9.4ZM47.88,19.52h-4.1v-9.4h4.1v9.4ZM34.56,19.52h-7.18v-9.4h7.18v9.4ZM25.34,19.52h-2.05v-9.4h2.05v9.4Z"/>
+          <rect class="cls-2" x="59.16" y="10.12" width="7.05" height="9.4"/>
+        </g>
+        <path class="cls-2" d="M66.21,43.87h-2.35v-9.4h2.35v9.4ZM49.75,43.87h-10.97v-9.4h10.97v9.4ZM35.64,43.87h-3.13v-9.4h3.13v9.4ZM26.24,43.87h-14.11v-9.4h14.11v9.4Z"/>
+        <path class="cls-2" d="M66.21,68.22h-2.35v-9.4h2.35v9.4ZM49.75,68.22h-10.97v-9.4h10.97v9.4ZM35.64,68.22h-3.13v-9.4h3.13v9.4ZM26.24,68.22h-14.11v-9.4h14.11v9.4Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

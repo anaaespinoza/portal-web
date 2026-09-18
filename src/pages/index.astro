@@ -1,0 +1,31 @@
+---
+// Ruta "/" — origen: <Landing /> (src/screens/landing)
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroVideo from "../components/landing/HeroVideo.astro";
+import LogoMarquee from "../components/landing/LogoMarquee.astro";
+import CategoriasSection from "../components/landing/CategoriasSection.astro";
+---
+<BaseLayout
+  title="Tecnológico Superior de Jalisco"
+  description="El Tecnológico Superior de Jalisco (TSJ) impulsa la educación superior y la formación a nivel universitario en el estado de Jalisco, con amplia oferta académica, unidades académicas y programas de calidad."
+>
+  <div class="landing-hero">
+    <HeroVideo />
+    <LogoMarquee />
+  </div>
+  <CategoriasSection />
+  <!-- Resto de secciones del landing → FASE 1 tarea 2 -->
+</BaseLayout>
+
+<style>
+  .landing-hero {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: 900px) {
+    .landing-hero {
+      height: calc(100vh - 128px);
+    }
+  }
+</style>

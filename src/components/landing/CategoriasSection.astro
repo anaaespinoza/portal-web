@@ -1,0 +1,362 @@
+---
+// Sección Categorías/Oferta — origen: <CategoriasSection /> + <EstadisticasBanner />
+import StatsBanner from "./StatsBanner.astro";
+
+const categorias = [
+  {
+    id: 1,
+    titulo: "Ingenierías",
+    imagen: "https://tecmm.edu.mx/apiCms/cmsWebFiles/Ingenieria-nuevo.jpeg",
+    to: "/ofertaEducativa/filtro/ingenierias",
+  },
+  {
+    id: 2,
+    titulo: "Licenciaturas",
+    imagen: "https://tecmm.edu.mx/apiCms/cmsWebFiles/Licenciaturas-dos.jpeg",
+    to: "/ofertaEducativa/filtro/licenciaturas",
+  },
+  {
+    id: 3,
+    titulo: "Maestrías",
+    imagen: "https://tecmm.edu.mx/apiCms/cmsWebFiles/Maestrias-nuevo.jpeg",
+    to: "/ofertaEducativa/filtro/maestrias",
+  },
+];
+---
+
+<section class="categorias" id="categorias">
+  <h2 class="categorias-titulo">
+    Descubre tu camino <span class="categorias-accent">hacia el futuro</span>
+  </h2>
+
+  <div class="carrusel">
+    <button class="carrusel-arrow carrusel-arrow--left" type="button" aria-label="Categoría anterior">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    </button>
+
+    <ul class="carrusel-stage">
+      {categorias.map((c) => (
+        <li class="carrusel-item" data-pos="0">
+          <a href={c.to}>
+            <img src={c.imagen} alt={c.titulo} loading="lazy" />
+            <span class="carrusel-gradiente" aria-hidden="true"></span>
+            <h3 class="carrusel-tit"><span>{c.titulo}</span></h3>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <button class="carrusel-arrow carrusel-arrow--right" type="button" aria-label="Categoría siguiente">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </button>
+
+    <div class="carrusel-mobile" role="group" aria-label="Controles del carrusel">
+      <button class="carrusel-btn-mobile" type="button" aria-label="Categoría anterior">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+      <button class="carrusel-btn-mobile" type="button" aria-label="Categoría siguiente">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <StatsBanner />
+</section>
+
+<style>
+  .categorias {
+    position: relative;
+    overflow: hidden;
+    padding-top: 5rem;
+    padding-bottom: 6rem;
+  }
+
+  .categorias-titulo {
+    text-align: center;
+    margin: 0 0 6rem;
+    color: var(--navy-blue-dark);
+    font-family: "madaniArabicBold", sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    padding-inline: 1rem;
+  }
+
+  .categorias-accent {
+    color: var(--red);
+  }
+
+  /* Carrusel */
+  .carrusel {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .carrusel-stage {
+    position: relative;
+    width: 100%;
+    height: 430px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .carrusel-item {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: 0;
+    width: 290px;
+    height: 390px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    filter: brightness(0.5);
+    z-index: 0;
+    pointer-events: none;
+    transition:
+      transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.6s,
+      filter 0.6s,
+      box-shadow 0.6s;
+
+    --side-x: 70%;
+    --side-scale: 0.8;
+  }
+
+  .carrusel-item a {
+    display: block;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .carrusel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .carrusel-item:hover img {
+    transform: scale(1.05);
+  }
+
+  .carrusel-gradiente {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 65%;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.3) 60%,
+      transparent 100%
+    );
+  }
+
+  .carrusel-tit {
+    position: absolute;
+    bottom: 32px;
+    left: 16px;
+    right: 16px;
+    margin: 0;
+    text-align: center;
+    color: #fff;
+    font-family: "madaniArabicBold", sans-serif;
+    font-size: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .carrusel-tit span {
+    display: block;
+  }
+
+  /* Posiciones */
+  .carrusel-item[data-pos="0"] {
+    transform: translate(-50%, -50%) scale(1);
+    z-index: 3;
+    opacity: 1;
+    filter: none;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+    pointer-events: auto;
+  }
+
+  .carrusel-item[data-pos="-1"] {
+    transform: translate(-50%, -50%) translateX(calc(-1 * var(--side-x))) scale(var(--side-scale));
+    z-index: 1;
+    opacity: 0.6;
+    filter: brightness(0.75);
+  }
+
+  .carrusel-item[data-pos="1"] {
+    transform: translate(-50%, -50%) translateX(var(--side-x)) scale(var(--side-scale));
+    z-index: 2;
+    opacity: 0.6;
+    filter: brightness(0.75);
+  }
+
+  /* Flechas */
+  .carrusel-arrow {
+    display: none;
+    position: absolute;
+    top: 42%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 2px solid var(--navyBlue);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .carrusel-arrow svg,
+  .carrusel-btn-mobile svg {
+    width: 2rem;
+    height: 2rem;
+    fill: var(--navyBlue);
+  }
+
+  .carrusel-arrow:hover {
+    background-color: var(--navyBlue);
+  }
+
+  .carrusel-arrow:hover svg,
+  .carrusel-btn-mobile:hover svg {
+    fill: #fff;
+  }
+
+  .carrusel-arrow--left {
+    left: 30px;
+  }
+
+  .carrusel-arrow--right {
+    right: 30px;
+  }
+
+  .carrusel-mobile {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    margin-top: 12px;
+  }
+
+  .carrusel-btn-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 2px solid var(--navyBlue);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .carrusel-btn-mobile:hover {
+    background-color: var(--navyBlue);
+  }
+
+  @media (min-width: 600px) {
+    .categorias {
+      padding-top: 10rem;
+    }
+    .categorias-titulo {
+      font-size: 2.5rem;
+    }
+    .carrusel-stage {
+      height: 480px;
+    }
+    .carrusel-item {
+      width: 440px;
+      height: 500px;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .carrusel-stage {
+      height: 550px;
+    }
+    .carrusel-item {
+      --side-x: 85%;
+      --side-scale: 0.85;
+    }
+    .carrusel-arrow {
+      display: flex;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .carrusel-mobile {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const items = Array.from(document.querySelectorAll(".carrusel-item"));
+  const total = items.length;
+  const stage = document.querySelector(".carrusel");
+  let current = 0;
+  let interval = null;
+
+  function render() {
+    items.forEach((el, i) => {
+      let f = i - (current % total);
+      if (f > 1) f -= total;
+      if (f < -1) f += total;
+      el.setAttribute("data-pos", String(f));
+    });
+  }
+
+  function next() {
+    current += 1;
+    render();
+  }
+
+  function prev() {
+    current -= 1;
+    render();
+  }
+
+  function start() {
+    if (interval) clearInterval(interval);
+    interval = setInterval(next, 2500);
+  }
+
+  function stop() {
+    if (interval) clearInterval(interval);
+    interval = null;
+  }
+
+  stage?.addEventListener("mouseenter", stop);
+  stage?.addEventListener("mouseleave", start);
+  stage?.addEventListener("focusin", stop);
+  stage?.addEventListener("focusout", start);
+
+  document.querySelector(".carrusel-arrow--left")?.addEventListener("click", prev);
+  document.querySelector(".carrusel-arrow--right")?.addEventListener("click", next);
+  document.querySelector(".carrusel-btn-mobile")?.addEventListener("click", prev);
+  document.querySelectorAll(".carrusel-btn-mobile")[1]?.addEventListener("click", next);
+
+  render();
+  start();
+</script>

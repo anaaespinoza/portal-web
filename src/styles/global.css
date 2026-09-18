@@ -1,0 +1,78 @@
+/* Estilos globales del portal TSJ — fuentes, tokens y reset */
+
+@import "tailwindcss";
+
+@font-face { font-family: "madaniArabicBlack"; src: local("MadaniArabicBlack"), url("../assets/fonts/Madani-Arabic-Black.ttf"); }
+@font-face { font-family: "madaniArabicBold"; src: local("MadaniArabicBlack"), url("../assets/fonts/Madani-Arabic-Bold.ttf"); }
+@font-face { font-family: "madaniArabicExtraBold"; src: local("MadaniArabicBlack"), url("../assets/fonts/Madani-Arabic-Extra-Bold.ttf"); }
+@font-face { font-family: "madaniArabicExtraLight"; src: local("MadaniArabicBlack"), url("../assets/fonts/Madani-Arabic-Extra-Light.ttf"); }
+@font-face { font-family: "madaniArabicLight"; src: local("MadaniArabicBlack"), url("../assets/fonts/Madani-Arabic-Light.ttf"); }
+@font-face { font-family: "madaniArabicMedium"; src: local("MadaniArabicBlack"), url("../assets/fonts/Madani-Arabic-Medium.ttf"); }
+@font-face { font-family: "madaniArabicRegular"; src: local("MadaniArabicBlack"), url("../assets/fonts/Madani-Arabic-Regular.ttf"); }
+@font-face { font-family: "madaniArabicSemiBold"; src: local("MadaniArabicBlack"), url("../assets/fonts/Madani-Arabic-Semi-Bold.ttf"); }
+@font-face { font-family: "madaniArabicVariable"; src: local("MadaniArabicBlack"), url("../assets/fonts/Madani-Arabic-Variable.ttf"); }
+@font-face { font-family: "Madani Regular"; src: url("../assets/fonts/Madani-Arabic-Regular.ttf") format("truetype"); font-weight: normal; font-style: normal; }
+@font-face { font-family: "Madani Bold"; src: url("../assets/fonts/Madani-Arabic-Bold.ttf") format("truetype"); font-weight: bold; font-style: normal; }
+
+:root {
+  --blue: #308fff;
+  --green: #54c98f;
+  --orange: #ffae31;
+  --navyBlue: #33179c;
+  --navy-blue-dark: #1e0184;
+  --red: #ff4d63;
+  --gold: #a7823b;
+  --grey: #d8d8d8;
+  --greydark: #373a3a;
+  --text: #857f8a;
+  --bgbasic: #f8f7f6;
+  --bgsecondary: #efefef;
+  --bgsecond: #ececec;
+  --textdark: #475569;
+  --light-grey: #f0f0f0;
+}
+
+/* Tokens Tailwind v4 (@theme) — se generan utilidades bg-tsj-*, text-tsj-*, etc. */
+@theme {
+  --color-tsj-blue: #308fff;
+  --color-tsj-green: #54c98f;
+  --color-tsj-orange: #ffae31;
+  --color-tsj-navy: #33179c;
+  --color-tsj-navy-dark: #1e0184;
+  --color-tsj-red: #ff4d63;
+  --color-tsj-gold: #a7823b;
+  --color-tsj-grey: #d8d8d8;
+  --color-tsj-greydark: #373a3a;
+  --color-tsj-text: #857f8a;
+  --color-tsj-bgbasic: #f8f7f6;
+  --color-tsj-bgsecondary: #efefef;
+  --color-tsj-bgsecond: #ececec;
+  --color-tsj-textdark: #475569;
+  --color-tsj-light-grey: #f0f0f0;
+
+  --font-madani-light: "madaniArabicLight", sans-serif;
+  --font-madani-regular: "madaniArabicRegular", sans-serif;
+  --font-madani-medium: "madaniArabicMedium", sans-serif;
+  --font-madani-semibold: "madaniArabicSemiBold", sans-serif;
+  --font-madani-bold: "madaniArabicBold", sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+}

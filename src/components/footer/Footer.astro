@@ -1,0 +1,73 @@
+---
+// Footer (port de src/components/footer/footer.tsx del SPA)
+import logoTsjBco from "../../assets/logos/tsjBco.png";
+import logoAquiCrezco from "../../assets/logos/aqui-yo-crezco.png";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="tl-footer">
+  <div class="tl-footer-top">
+    <div class="tl-footer-grid">
+      <div class="tl-footer-logo">
+        <img src={logoTsjBco.src} alt="Tecnológico Superior de Jalisco" />
+      </div>
+
+      <div class="tl-footer-info">
+        <h5>Tecnológico Superior de Jalisco</h5>
+        <div class="tl-t-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+        </div>
+        <p>Camino Arenero 1101, Zapopan, México, 45017.</p>
+        <div class="tl-t-icon rot">
+          <svg viewBox="0 0 24 24"><path d="M3.9 12c0-1.7 1.4-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.7 0-3.1-1.4-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.7 0 3.1 1.4 3.1 3.1s-1.4 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5z"/></svg>
+        </div>
+        <a href="https://consultapublicamx.plataformadetransparencia.org.mx/vut-web/faces/view/consultaPublica.xhtml?idEntidad=MTQ=&idSujetoObligado=MTM3OTE=#inicio" target="_blank" rel="noopener noreferrer">
+          Plataforma Nacional de Transparencia
+        </a>
+        <div class="tl-t-icon rot">
+          <svg viewBox="0 0 24 24"><path d="M3.9 12c0-1.7 1.4-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.7 0-3.1-1.4-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.7 0 3.1 1.4 3.1 3.1s-1.4 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5z"/></svg>
+        </div>
+        <a href="/mapa-sitio">Mapa de sitio</a>
+      </div>
+
+      <div class="tl-footer-right">
+        <img src={logoAquiCrezco.src} alt="Aquí yo crezco" />
+      </div>
+    </div>
+  </div>
+
+  <div class="tl-footbar">
+    <div class="tl-footbar-inner">
+      <span>© {year} Tecnológico Superior de Jalisco. Todos los derechos reservados</span>
+      <a href="/centro-de-ayuda">Ayuda</a>
+      <a href="#">Contacto</a>
+      <a href="#">Privacidad</a>
+    </div>
+  </div>
+</footer>
+
+<style is:global>
+  .tl-footer a { text-decoration: none; }
+  .tl-footer a:hover { text-decoration: underline; }
+  .tl-footer-top { background-color: var(--greydark); padding: 40px 0; }
+  .tl-footer-grid { max-width: 1200px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; }
+  .tl-footer-logo { display: flex; justify-content: flex-start; }
+  .tl-footer-logo img { width: 100%; max-width: 220px; height: auto; object-fit: contain; }
+  .tl-footer-info { color: #fff; display: grid; grid-template-columns: 24px auto; column-gap: 12px; row-gap: 16px; justify-content: center; justify-items: start; margin: 0 auto; max-width: max-content; }
+  .tl-footer-info h5 { grid-column: 2 / -1; font-family: "madaniArabicMedium", sans-serif; line-height: 1.2; font-size: 1.35rem; margin: 0 0 8px; }
+  .tl-footer-info p { font-family: "madaniArabicLight", sans-serif; font-size: 0.9rem; opacity: 0.9; line-height: 1.4; margin: 0; }
+  .tl-footer-info a { color: #fff; font-family: "madaniArabicLight", sans-serif; font-size: 0.9rem; }
+  .tl-footer-info .tl-t-icon { display: flex; align-items: center; padding-top: 2px; }
+  .tl-footer-info .tl-t-icon svg { width: 20px; height: 20px; fill: #fff; }
+  .tl-footer-info .tl-t-icon.rot svg { transform: rotate(-45deg); }
+  .tl-footer-right { display: flex; justify-content: flex-end; }
+  .tl-footer-right img { width: 100%; max-width: 260px; height: auto; object-fit: contain; }
+  .tl-footbar { background-color: var(--light-grey); border-top: 1px solid #ccc; padding: 8px 32px; text-align: center; }
+  .tl-footbar-inner { display: flex; justify-content: center; align-items: center; gap: 24px; flex-wrap: wrap; color: #444; font-size: 0.75rem; font-family: "madaniArabicExtraLight", sans-serif; }
+  .tl-footbar-inner a { color: #444; font-family: "madaniArabicExtraLight", sans-serif; font-size: 0.75rem; }
+  @media (max-width: 899.98px) {
+    .tl-footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .tl-footer-logo, .tl-footer-right { justify-content: center; }
+  }
+</style>

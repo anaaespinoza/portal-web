@@ -1,0 +1,398 @@
+---
+// Navbar completo (port de la barra de navegación del SPA)
+import NavButtonDesktop from "./NavButtonDesktop.astro";
+import MobileDrawer from "./MobileDrawer.astro";
+import { navItems, navItemsEnLinea, type NavItem } from "./navitems";
+
+import logoTsjBco from "../../assets/logos/logoTsj-01.png";
+import logoTsjEnLineaNavbar from "../../assets/logos/en-linea-tsj-navbar-logo.png";
+import logoEducacion from "../../assets/logos/educacionBco.png";
+import logoTecnm from "../../assets/logos/tecnmBco.png";
+import logoSicyt from "../../assets/logos/sicytBco.png";
+import logoGobJalisco from "../../assets/logos/jaliscoBco.png";
+
+const pathname = Astro.url.pathname;
+const isEnLinea = pathname === "/en-linea" || pathname.startsWith("/en-linea/");
+const activeNav: NavItem[] = isEnLinea ? navItemsEnLinea : navItems;
+
+const logosRow = [
+  { src: logoTsjBco, alt: "Logo TSJ", height: "50px", to: "/" },
+  {
+    src: logoEducacion,
+    alt: "Educación",
+    height: "30px",
+    to: "https://portalsej.jalisco.gob.mx/",
+  },
+  { src: logoTecnm, alt: "TECNM", height: "40px", to: "https://www.tecnm.mx/" },
+  {
+    src: logoSicyt,
+    alt: "SICYT",
+    height: "40px",
+    to: "https://sicyt.jalisco.gob.mx/",
+  },
+  {
+    src: logoGobJalisco,
+    alt: "Gobierno de Jalisco",
+    height: "50px",
+    to: "https://www.jalisco.gob.mx/",
+  },
+];
+
+const socials = [
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/TecSJ",
+    icon: "facebook",
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/tecsj/?hl=es-la",
+    icon: "instagram",
+  },
+  {
+    label: "YouTube",
+    href: "https://youtube.com/@tecsj?si=A6oIg9csJfwxEERc",
+    icon: "youtube",
+  },
+  { label: "X", href: "https://x.com", icon: "x" },
+  { label: "TikTok", href: "https://vt.tiktok.com/ZSC5t5oVk/", icon: "tiktok" },
+];
+
+const isExternal = (href: string) => href.startsWith("http");
+---
+
+<header class="tl-nav">
+  <input type="checkbox" id="tl-drawer-toggle" class="tl-drawer-toggle" />
+  <label class="tl-burger-overlay" for="tl-drawer-toggle"></label>
+
+  <!-- Barra superior (desktop) -->
+  <div class="tl-topbar">
+    <div class="tl-topbar-inner">
+      <div class="tl-brand">
+        {
+          isEnLinea ? (
+            <img
+              class="tl-brand-enlinea"
+              src={logoTsjEnLineaNavbar.src}
+              alt="Estás en TSJ en Línea"
+            />
+          ) : (
+            <a href="/en-linea" aria-label="TSJ Dirección General">
+              <img
+                class="tl-brand-main"
+                src={logoTsjEnLineaNavbar.src}
+                alt="TSJ Dirección General"
+              />
+            </a>
+          )
+        }
+      </div>
+
+      {activeNav.map((item) => <NavButtonDesktop item={item} />)}
+
+      <!-- <a class="tl-admision" href="/admisiones">Admisión</a> -->
+
+      <!-- Si la propiedad para la ruta es 'href' y para el texto es 'label' o 'title': -->
+      <div class="tl-admision-wrapper">
+        <NavButtonDesktop
+          item={{
+            title: "Admisión",
+            path: "/admisiones",
+            options: [],
+          }}
+        />
+      </div>
+      <a class="tl-a" href="/centro-de-ayuda">Ayuda</a>
+    </div>
+  </div>
+
+  <!-- Fila de logos -->
+  <div class={"tl-navrow" + (isEnLinea ? " tl-navrow--centered" : "")}>
+    <label class="tl-burger" for="tl-drawer-toggle" aria-label="Abrir menú">
+      <svg viewBox="0 0 24 24"
+        ><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg
+      >
+    </label>
+    <div class="tl-logos">
+      {
+        logosRow.map((logo) => (
+          <span class="tl-logo">
+            {isExternal(logo.to) ? (
+              <a href={logo.to} target="_blank" rel="noopener noreferrer">
+                <img
+                  src={logo.src.src}
+                  alt={logo.alt}
+                  style={`height:${logo.height}`}
+                />
+              </a>
+            ) : (
+              <a href={logo.to}>
+                <img
+                  src={logo.src.src}
+                  alt={logo.alt}
+                  style={`height:${logo.height}`}
+                />
+              </a>
+            )}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Drawer móvil -->
+  <MobileDrawer items={activeNav} />
+</header>
+
+<!-- Redes sociales -->
+<div class="tl-socials">
+  {
+    socials.map((s) => (
+      <a
+        href={s.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={s.label}
+      >
+        {s.icon === "facebook" && (
+          <svg viewBox="0 0 24 24">
+            <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.13 8.44 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.46H15.2c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99C18.34 21.13 22 16.99 22 12z" />
+          </svg>
+        )}
+        {s.icon === "instagram" && (
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2c2.72 0 3.06.01 4.12.06 1.07.05 1.8.22 2.44.47 1.06.41 1.86 1.04 2.67 1.85.81.81 1.44 1.61 1.85 2.67.25.64.42 1.37.47 2.44C23.99 8.94 24 9.28 24 12s-.01 3.06-.06 4.12c-.05 1.07-.22 1.8-.47 2.44-.41 1.06-1.04 1.86-1.85 2.67-.81.81-1.61 1.44-2.67 1.85-.64.25-1.37.42-2.44.47-1.06.05-1.4.06-4.12.06s-3.06-.01-4.12-.06c-1.07-.05-1.8-.22-2.44-.47-1.06-.41-1.86-1.04-2.67-1.85-.81-.81-1.44-1.61-1.85-2.67-.25-.64-.42-1.37-.47-2.44C.01 15.06 0 14.72 0 12s.01-3.06.06-4.12c.05-1.07.22-1.8.47-2.44.41-1.06 1.04-1.86 1.85-2.67C1.19 1.96 1.99 1.33 3.05.92 3.69.67 4.42.5 5.49.45 6.55.4 6.89.39 9.59.39S12 .4 12 2zm-.13 1.8c-2.65 0-2.97.01-4.02.06-1.15.05-1.78.24-2.2.4-.55.22-.95.48-1.36.9-.42.42-.68.81-.9 1.36-.16.42-.35 1.05-.4 2.2-.05 1.05-.06 1.37-.06 4.02s.01 2.97.06 4.02c.05 1.15.24 1.78.4 2.2.22.55.48.95.9 1.36.42.42.81.68 1.36.9.42.16 1.05.35 2.2.4 1.05.05 1.37.06 4.02.06s2.97-.01 4.02-.06c1.15-.05 1.78-.24 2.2-.4.55-.22.95-.48 1.36-.9.42-.42.68-.81.9-1.36.16-.42.35-1.05.4-2.2.05-1.05.06-1.37.06-4.02s-.01-2.97-.06-4.02c-.05-1.15-.24-1.78-.4-2.2-.22-.55-.48-.95-.9-1.36-.42-.42-.81-.68-1.36-.9-.42-.16-1.05-.35-2.2-.4-1.05-.05-1.37-.06-4.02zm0 3.03a5.17 5.17 0 1 1 0 10.34 5.17 5.17 0 0 1 0-10.34zm0 1.8a3.37 3.37 0 1 0 0 6.74 3.37 3.37 0 0 0 0-6.74zm6.44-3.66a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z" />
+          </svg>
+        )}
+        {s.icon === "youtube" && (
+          <svg viewBox="0 0 24 24">
+            <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.4.6A3 3 0 0 0 .5 6.2 31.1 31.1 0 0 0 0 12a31.1 31.1 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.6 9.4.6 9.4.6s7.6 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.1 31.1 0 0 0 24 12a31.1 31.1 0 0 0-.5-5.8zM9.6 15.6V8.4L15.8 12z" />
+          </svg>
+        )}
+        {s.icon === "x" && (
+          <svg viewBox="0 0 24 24">
+            <path d="M18.2 2h3.3l-7.3 8.3L22.7 22h-6.7l-5.2-6.8L4.8 22H1.4l7.8-8.9L1 2h6.9l4.7 6.2zm-1.2 18h1.9L7 3.9H5z" />
+          </svg>
+        )}
+        {s.icon === "tiktok" && (
+          <svg viewBox="0 0 24 24">
+            <path d="M16.6 3c.4 2.1 1.7 3.6 3.8 3.9v2.9c-1.4.1-2.7-.3-3.8-1.1v5.6c0 4.2-3.2 6.7-6.7 6.6a6.4 6.4 0 0 1-6.1-6.6c0-3.7 3.1-6 7-5.6v3c-.2 0-.4-.1-.6-.1-1.6-.4-3.1.8-3.2 2.5-.1 1.7 1.3 3 3 3 1.7 0 2.9-1.2 2.9-3V3z" />
+          </svg>
+        )}
+      </a>
+    ))
+  }
+</div>
+
+<style is:global>
+  .tl-nav {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1100;
+  }
+
+  .tl-topbar {
+    background-color: var(--greydark);
+    display: none;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 48px;
+    padding: 0 16px;
+  }
+  .tl-topbar-inner {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 0px;
+  }
+
+  .tl-brand {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    margin-left: 80px;
+    height: 48px;
+  }
+  .tl-brand img {
+    width: auto;
+    position: relative;
+    z-index: 2;
+  }
+  .tl-brand .tl-brand-enlinea {
+    height: 90px;
+    margin-top: 50px;
+    margin-left: -80px;
+  }
+  .tl-brand .tl-brand-main {
+    height: 90px;
+    margin-top: 50px;
+    margin-left: -80px;
+  }
+
+  /* Estilo rojo personalizado para el botón de Admisión */
+  .tl-admision-wrapper {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--red) !important;
+    border-radius: 20px !important;
+    padding: 2px 12px !important;
+    margin-left: 4px;
+  }
+
+  .tl-admision-wrapper * {
+    background-color: transparent !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  .tl-admision-wrapper a,
+  .tl-admision-wrapper button {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+  }
+
+  .tl-admision-wrapper:hover {
+    opacity: 0.9;
+  }
+
+  .tl-admision-wrapper .tl-navbtn {
+    margin: 0;
+    padding: 0;
+  }
+
+  .tl-admision-wrapper .tl-a {
+    margin: 0;
+    padding: 4px 8px;
+  }
+
+  .tl-navrow {
+    background-color: var(--navy-blue-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    padding: 0 32px;
+  }
+  .tl-navrow--centered {
+    justify-content: center;
+  }
+
+  .tl-logos {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 155px;
+  }
+  .tl-logo a {
+    display: flex;
+    align-items: center;
+  }
+  .tl-logo img {
+    width: auto;
+    object-fit: contain;
+  }
+
+  .tl-burger {
+    display: none;
+    color: #fff;
+    background: none;
+    border: 0;
+    position: absolute;
+    left: 16px;
+    cursor: pointer;
+  }
+  .tl-burger svg {
+    width: 28px;
+    height: 28px;
+    fill: #fff;
+  }
+
+  .tl-drawer-toggle {
+    display: none;
+  }
+  .tl-drawer-toggle:checked ~ .tl-mobile-drawer {
+    opacity: 1;
+    visibility: visible;
+  }
+  .tl-drawer-toggle:checked ~ .tl-burger-overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+  .tl-burger-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1150;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .tl-socials {
+    position: fixed;
+    top: 128px;
+    left: 24px;
+    background-color: var(--greydark);
+    border-radius: 0 0 12px 12px;
+    display: none;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    z-index: 1090;
+  }
+  .tl-socials a {
+    color: #fff;
+    display: flex;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+  }
+  .tl-socials svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+  }
+
+  @media (min-width: 900px) {
+    .tl-topbar {
+      display: flex;
+    }
+    .tl-socials {
+      display: flex;
+    }
+    .tl-burger {
+      display: none !important;
+    }
+    .tl-mobile-drawer {
+      display: none;
+    }
+  }
+  @media (max-width: 899.98px) {
+    .tl-burger {
+      display: flex;
+    }
+    .tl-navrow {
+      padding: 0 16px;
+    }
+    .tl-logos {
+      gap: 16px;
+    }
+  }
+  @media (max-width: 599.98px) {
+    .tl-logos {
+      gap: 12px;
+    }
+    .tl-logo img {
+      max-height: 34px;
+    }
+  }
+  @media (min-width: 1920px) {
+    .tl-brand .tl-brand-enlinea,
+    .tl-brand .tl-brand-main {
+      margin-left: -16px;
+    }
+  }
+</style>
